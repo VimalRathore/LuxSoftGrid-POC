@@ -1,0 +1,27 @@
+<div class="container">
+       <div>
+        <h4 style="font-family:sans-serif; margin-left: 6px;">Employee Details</h4>
+      <ag-grid-angular class="ag-theme-dark" style="height: 250px;width:100%;margin: 5px" [rowData]="rowData" [columnDefs]="columnDefs"
+        [gridOptions]="gridOptions" [rowSelection]="rowSelection" (gridReady)="onGridReady($event)">
+      </ag-grid-angular>
+    </div>
+    <div class="d-flex justify-content-center space-top">
+      <pagination paginationAutoPageSize = "true" [boundaryLinks]="true" [totalItems]="model.pagination.totalItems" [itemsPerPage]="model.pagination.itemsPerPage"
+        [(ngModel)]="model.pagination.currentPage" (pageChanged)="pageChanged($event)" [maxSize]=5 previousText="<"
+        nextText=">" firstText="<<" lastText=">>">
+      </pagination>
+    </div>
+    <div>
+      
+        <div style="text-align: right; margin-top: 10px;">
+          <button class="btn btn-info" (click)="openFormModal()">Add Employee</button>
+          <button type="button" class="btn btn-success" (click)="onUpdate()">
+              <i class="fa fa-save"></i> Save
+            </button>
+            <button type="button" class="btn btn-danger" (click)="onRemoveSelected()">
+              <i class="fa fa-trash"></i> Delete
+            </button></div>
+          </div>
+  
+  </div>
+  
