@@ -24,7 +24,7 @@ import { FormModalComponent } from './FormModal/FormModal.component';
       AppComponent,
       EmployeeComponent,
       EmployeeChartComponent,
-      FormModalComponent
+      FormModalComponent,
    ],
    imports: [
       BrowserModule,
@@ -40,9 +40,10 @@ import { FormModalComponent } from './FormModal/FormModal.component';
       NgbModule.forRoot(),
       BrowserAnimationsModule,
       ToastrModule.forRoot(),
-      // StoreModule.forRoot({}),
-      // StoreModule.forFeature('LuxSoftStore', employeeReducers),
+      //StoreModule.forRoot(
    ],
+      // StoreModule.forFeature('LuxSoftStore', employeeReducers),
+   
    providers: [
       ErrorInterceptorProvider,
       EmployeeService

@@ -23,6 +23,8 @@ export class EmployeeComponent implements OnInit {
   public rowSelection;
   private gridApi;
   private gridColumnApi;
+  public dataChanged:boolean=false;
+  rowSelected: boolean = false;
   model: EmployeeViewModel;
   gridOptions: GridOptions;
   rowData: Employee[];
@@ -30,8 +32,7 @@ export class EmployeeComponent implements OnInit {
 
   constructor(private http: HttpClient,
     private empService: EmployeeService,
-    private toastr: ToastrService
-    ,
+    private toastr: ToastrService,
     private modalService: NgbModal
     //  private store: Store<any>
   ) { }
@@ -57,6 +58,13 @@ export class EmployeeComponent implements OnInit {
   pageChanged(event: any): void {
     this.model.pagination.currentPage = event.page;
     this.loadGrid();
+  }
+
+  dataUpdated(event: any): void {
+    this.dataChanged = true;
+  }
+  empRowSelected(event: any): void {
+    this.rowSelected = true;
   }
 
   loadGrid() {
@@ -125,6 +133,7 @@ export class EmployeeComponent implements OnInit {
     this.empService.deleteAllEmployees(this.model).subscribe(
       res => {
         if (res) {
+          this.rowSelected = false;
           this.toastr.success('Employee deleted successfully.');
         }
       },
@@ -143,6 +152,7 @@ export class EmployeeComponent implements OnInit {
       res => {
         if (res) {
           this.toastr.success('Employee Saved successfully');
+          this.dataChanged = true;
         }
       },
       error => { this.toastr.error(error); },
